@@ -25,13 +25,10 @@ self.downloadManager.dataSource = self;
 ``` objective-c
 #pragma mark - ADBDownloadManagerDataSource
 
-- (NSUInteger)numberOfFilesToDownloadForDownloadManager:(ADBDownloadManager *)manager {
-	...
-}
+- (NSUInteger)numberOfFilesToDownloadForDownloadManager:(ADBDownloadManager *)manager { ... }
 
-- (NSString *)downloadManager:(ADBDownloadManager *)manager pathForFileToDownloadAtIndex:(NSUInteger)index {
-	...
-}
+- (NSString *)downloadManager:(ADBDownloadManager *)manager
+ pathForFileToDownloadAtIndex:(NSUInteger)index { ... }
 
 ```
 
@@ -44,31 +41,21 @@ self.downloadManager.dataSource = self;
  didDownloadFileAtIndex:(NSUInteger)index
           fromRemoteURL:(NSString *)remoteURL
             toLocalPath:(NSString *)localPath
-                  bytes:(NSUInteger)bytes {
-	...
-}
+                  bytes:(NSUInteger)bytes { ... }
 
 - (void)downloadManager:(ADBDownloadManager *)manager
      didFailFileAtIndex:(NSUInteger)index
           fromRemoteURL:(NSString *)remoteURL
             toLocalPath:(NSString *)localPath
-                  error:(NSError *)error {
-	...
-}
+                  error:(NSError *)error { ... }
 
 - (void)downloadManagerDidCompleteAllDownloads:(ADBDownloadManager *)manager
                                     failedURLs:(NSArray *)failedURLs
-                                    totalBytes:(NSUInteger)totalBytes {
-	...
-}
+                                    totalBytes:(NSUInteger)totalBytes { ... }
 
-- (void)downloadManagerWillStart:(ADBDownloadManager *)manager {
-	...
-}
+- (void)downloadManagerWillStart:(ADBDownloadManager *)manager { ... }
 
-- (void)downloadManagerDidStop:(ADBDownloadManager *)manager {
-	...
-}
+- (void)downloadManagerDidStop:(ADBDownloadManager *)manager { ... }
 ```
 
 There you go.
