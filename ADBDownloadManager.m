@@ -57,6 +57,7 @@
         return;
     }
     
+    _stopAfterCurrentRequest = NO;
     _isRunning = YES;
 
     if ([self.delegate respondsToSelector:@selector(downloadManagerWillStart:)]) {
