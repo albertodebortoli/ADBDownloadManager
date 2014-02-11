@@ -52,11 +52,10 @@
  *
  *	@param	baseRemoteURL	The base remote URL to use for the files to be downloaded.
  *	@param	localPathFolder	The base local path folder to use for the files to be saved.
- *	@param	queue	The queue to use for the execution of the NSURLConnection completionHandler.
  *
  *	@return	A ADBDownloadManager instance.
  */
-- (instancetype)initWithBaseRemoteURL:(NSString *)baseRemoteURL localPathFolder:(NSString *)localPathFolder queue:(NSOperationQueue *)queue;
+- (instancetype)initWithBaseRemoteURL:(NSString *)baseRemoteURL localPathFolder:(NSString *)localPathFolder;
 
 /**
  *	Start the download manager
@@ -64,7 +63,7 @@
 - (void)start;
 
 /**
- *	Stop the download manager
+ *	Stop the download manager. Future downloads will not start but current one will continue.
  */
 - (void)stop;
 
