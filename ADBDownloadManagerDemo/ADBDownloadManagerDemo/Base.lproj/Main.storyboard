@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ADBViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bJ1-jf-t69"/>
+                        <viewControllerLayoutGuide type="bottom" id="uV2-5i-iya"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="qQC-gb-iF4">
+                                <rect key="frame" x="149" y="149" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxx-Sc-yax">
+                                <rect key="frame" x="111" y="33" width="113" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Dowload files (5)">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="downloadFiles:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="8nC-gV-UH3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyD-UD-n1j">
+                                <rect key="frame" x="219" y="203" width="94" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Clear console">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearConsole:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="bls-ND-gQF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18v-QK-neK">
+                                <rect key="frame" x="85" y="71" width="165" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Stop next downloads">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stopDownloads:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="XXN-QN-TBN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQF-uH-nfU">
+                                <rect key="frame" x="85" y="109" width="165" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Delete downloaded files">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteDownloadedFiles:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xIF-mQ-ifP"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y2K-uG-A0A">
+                                <rect key="frame" x="0.0" y="234" width="320" height="314"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Lib-F4-WLo">
+                                <rect key="frame" x="85" y="194" width="165" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Y2K-uG-A0A" firstAttribute="top" secondItem="qQC-gb-iF4" secondAttribute="bottom" constant="48" id="2V4-6c-kWL"/>
+                            <constraint firstItem="dQF-uH-nfU" firstAttribute="top" secondItem="18v-QK-neK" secondAttribute="bottom" constant="8" id="5Lr-6p-rJH"/>
+                            <constraint firstItem="qQC-gb-iF4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="149" id="7mV-BE-fJU"/>
+                            <constraint firstAttribute="trailing" secondItem="dQF-uH-nfU" secondAttribute="trailing" constant="70" id="H0r-dk-olg"/>
+                            <constraint firstItem="Y2K-uG-A0A" firstAttribute="top" secondItem="Lib-F4-WLo" secondAttribute="bottom" constant="38" id="HLW-8S-CpL"/>
+                            <constraint firstItem="qQC-gb-iF4" firstAttribute="top" secondItem="dQF-uH-nfU" secondAttribute="bottom" constant="10" id="KBn-ej-Wgy"/>
+                            <constraint firstAttribute="trailing" secondItem="Y2K-uG-A0A" secondAttribute="trailing" id="Qrv-0X-CwR"/>
+                            <constraint firstItem="cxx-Sc-yax" firstAttribute="top" secondItem="bJ1-jf-t69" secondAttribute="bottom" constant="13" id="VFy-1f-9qG"/>
+                            <constraint firstItem="dQF-uH-nfU" firstAttribute="top" secondItem="18v-QK-neK" secondAttribute="bottom" constant="8" id="Zpf-pw-G27"/>
+                            <constraint firstItem="18v-QK-neK" firstAttribute="top" secondItem="cxx-Sc-yax" secondAttribute="bottom" constant="8" id="aSU-ua-lp6"/>
+                            <constraint firstAttribute="trailing" secondItem="Lib-F4-WLo" secondAttribute="trailing" constant="70" id="cj9-y9-PZG"/>
+                            <constraint firstItem="18v-QK-neK" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="85" id="gfw-lM-rl7"/>
+                            <constraint firstItem="uV2-5i-iya" firstAttribute="top" secondItem="Y2K-uG-A0A" secondAttribute="bottom" constant="20" id="hJd-jj-pty"/>
+                            <constraint firstItem="cxx-Sc-yax" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="111" id="hgy-fu-nP9"/>
+                            <constraint firstItem="18v-QK-neK" firstAttribute="top" secondItem="cxx-Sc-yax" secondAttribute="bottom" constant="8" id="kIE-F1-POk"/>
+                            <constraint firstAttribute="trailing" secondItem="qQC-gb-iF4" secondAttribute="trailing" constant="134" id="n1f-8y-lJA"/>
+                            <constraint firstItem="Lib-F4-WLo" firstAttribute="top" secondItem="qQC-gb-iF4" secondAttribute="bottom" constant="8" id="nXY-LF-CQO"/>
+                            <constraint firstItem="Y2K-uG-A0A" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="ocI-IT-GP7"/>
+                            <constraint firstAttribute="trailing" secondItem="cxx-Sc-yax" secondAttribute="trailing" constant="96" id="opj-cM-Geh"/>
+                            <constraint firstItem="TyD-UD-n1j" firstAttribute="top" secondItem="dQF-uH-nfU" secondAttribute="bottom" constant="64" id="q1g-zc-6cx"/>
+                            <constraint firstItem="Lib-F4-WLo" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="85" id="qGG-8X-hns"/>
+                            <constraint firstAttribute="trailing" secondItem="18v-QK-neK" secondAttribute="trailing" constant="70" id="uTA-cM-cdE"/>
+                            <constraint firstItem="qQC-gb-iF4" firstAttribute="top" secondItem="dQF-uH-nfU" secondAttribute="bottom" constant="10" id="v4T-pY-rbY"/>
+                            <constraint firstAttribute="trailing" secondItem="TyD-UD-n1j" secondAttribute="trailing" constant="7" id="vnS-ur-7Lx"/>
+                            <constraint firstItem="dQF-uH-nfU" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="85" id="xCh-df-w3A"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="indicatorView" destination="qQC-gb-iF4" id="Vc4-MC-HMh"/>
+                        <outlet property="logTextView" destination="Y2K-uG-A0A" id="veL-bY-dCa"/>
+                        <outlet property="progressView" destination="Lib-F4-WLo" id="32n-hb-Uza"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
