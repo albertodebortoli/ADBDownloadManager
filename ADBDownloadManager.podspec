@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'ADBDownloadManager'
-  s.version  = '1.0.0'
+  s.version  = '1.1.0'
   s.platform = :ios, '5.0'
   s.summary  = 'A download manager for iOS. Actually, all that you need to download files without any external library.'
   s.homepage = 'https://github.com/albertodebortoli/ADBDownloadManager'

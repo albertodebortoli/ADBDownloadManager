@@ -22,6 +22,9 @@
 		D3A2347F18AABF1D0027BCAC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3A2347D18AABF1D0027BCAC /* InfoPlist.strings */; };
 		D3A2348118AABF1D0027BCAC /* ADBDownloadManagerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A2348018AABF1D0027BCAC /* ADBDownloadManagerDemoTests.m */; };
 		D3A2348C18AABF2C0027BCAC /* ADBDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A2348B18AABF2C0027BCAC /* ADBDownloadManager.m */; };
+		D3A2349118AAE9490027BCAC /* ADBDownloadManager.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D3A2348E18AAE9490027BCAC /* ADBDownloadManager.podspec */; };
+		D3A2349218AAE9490027BCAC /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D3A2348F18AAE9490027BCAC /* LICENSE */; };
+		D3A2349318AAE9490027BCAC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D3A2349018AAE9490027BCAC /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,9 @@
 		D3A2348018AABF1D0027BCAC /* ADBDownloadManagerDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADBDownloadManagerDemoTests.m; sourceTree = "<group>"; };
 		D3A2348A18AABF2C0027BCAC /* ADBDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ADBDownloadManager.h; path = ../ADBDownloadManager.h; sourceTree = "<group>"; };
 		D3A2348B18AABF2C0027BCAC /* ADBDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ADBDownloadManager.m; path = ../ADBDownloadManager.m; sourceTree = "<group>"; };
+		D3A2348E18AAE9490027BCAC /* ADBDownloadManager.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ADBDownloadManager.podspec; path = ../ADBDownloadManager.podspec; sourceTree = "<group>"; };
+		D3A2348F18AAE9490027BCAC /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		D3A2349018AAE9490027BCAC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,9 @@
 		D3A2344918AABF1C0027BCAC = {
 			isa = PBXGroup;
 			children = (
+				D3A2348E18AAE9490027BCAC /* ADBDownloadManager.podspec */,
+				D3A2348F18AAE9490027BCAC /* LICENSE */,
+				D3A2349018AAE9490027BCAC /* README.md */,
 				D3A2348D18AABF320027BCAC /* ADBDownloadManager */,
 				D3A2345B18AABF1C0027BCAC /* ADBDownloadManagerDemo */,
 				D3A2347A18AABF1D0027BCAC /* ADBDownloadManagerDemoTests */,
@@ -242,9 +251,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3A2349318AAE9490027BCAC /* README.md in Resources */,
+				D3A2349118AAE9490027BCAC /* ADBDownloadManager.podspec in Resources */,
 				D3A2346E18AABF1C0027BCAC /* Images.xcassets in Resources */,
 				D3A2346018AABF1C0027BCAC /* InfoPlist.strings in Resources */,
 				D3A2346918AABF1C0027BCAC /* Main.storyboard in Resources */,
+				D3A2349218AAE9490027BCAC /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

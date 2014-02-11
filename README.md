@@ -2,6 +2,12 @@
 
 A download manager for iOS. Actually, all that you need to download files without any external library.
 
+Goals:
+
+* download of a sequence of files with the same base URL address
+* downloads happen in background and in a serial fashion
+* ability of canceling downloads that are not started yet
+
 Simple usage:
 
 - copy ADBDownloadManager class into your project
@@ -11,8 +17,7 @@ Simple usage:
 ``` objective-c
 NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
 self.downloadManager = [[ADBDownloadManager alloc] initWithBaseRemoteURL:@"http://www.myservice.com/"
-                                                         localPathFolder:documentsDirectory
-                                                                   queue:[NSOperationQueue currentQueue]];
+                                                         localPathFolder:documentsDirectory];
         
 self.downloadManager.delegate = self;
 self.downloadManager.dataSource = self;
