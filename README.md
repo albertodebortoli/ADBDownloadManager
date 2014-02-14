@@ -11,6 +11,11 @@ Goals:
 * downloads happen in background and in a serial fashion
 * ability of canceling downloads that are not started yet
 
+If you'd like to include this component as a pod using [CocoaPods](http://cocoapods.org/), just add the following line to your Podfile: `pod "ADBDownloadManager"`
+
+Try out the included demo project or just run `pod try ADBDownloadManager` to give it a try.
+
+
 Simple usage:
 
 - copy ADBDownloadManager class into your project
@@ -76,13 +81,13 @@ self.downloadManager.dataSource = self;
 - start the manager
 
 ``` objective-c
-    [self.downloadManager start];
+[self.downloadManager start];
 ```
 
 - stop it later if you need to
 
 ``` objective-c
-    [self.downloadManager stop];
+[self.downloadManager stop];
 ```
 
 There you go.
