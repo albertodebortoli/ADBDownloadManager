@@ -1,6 +1,6 @@
 //
 //  ADBDownloadManager.h
-//  v1.0.0
+//  v1.2.0
 //
 //  Created by Alberto De Bortoli on 27/08/2013.
 //
