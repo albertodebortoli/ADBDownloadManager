@@ -4,7 +4,10 @@ A download manager for iOS. Actually, all that you need to download files withou
 
 Goals:
 
-* download of a sequence of files with the same base URL address
+* download of a sequence of files
+* ease of download of a sequence of files with the same base URL address
+* create locally the folders hierarchy mapping the remote path (splitting the URL)
+* in case of files the with same base URL address, its components are not used in the folders creation
 * downloads happen in background and in a serial fashion
 * ability of canceling downloads that are not started yet
 
@@ -12,20 +15,27 @@ Simple usage:
 
 - copy ADBDownloadManager class into your project
 - import `ADBDownloadManager.h` in your class
-- use as follow
+- create the `DownloadManager`
 
 ``` objective-c
 NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+// without base URL
+self.downloadManager = [[ADBDownloadManager alloc] initWithLocalPathFolder:documentsDirectory];
+// or with base URL
 self.downloadManager = [[ADBDownloadManager alloc] initWithBaseRemoteURL:@"http://www.myservice.com/"
                                                          localPathFolder:documentsDirectory];
-        
+```
+
+- set the `delegate` and the `dataSource`
+
+``` objective-c
 self.downloadManager.delegate = self;
 self.downloadManager.dataSource = self;
 
 [self.downloadManager start];
 ```
 
-- implement the  ADBDownloadManagerDataSource protocol
+- implement the `ADBDownloadManagerDataSource` protocol
 
 ``` objective-c
 #pragma mark - ADBDownloadManagerDataSource
@@ -37,7 +47,7 @@ self.downloadManager.dataSource = self;
 
 ```
 
-- implement the ADBDownloadManagerDelegate protocol
+- implement the `ADBDownloadManagerDelegate` protocol
 
 ``` objective-c
 #pragma mark - ADBDownloadManagerDataSource
@@ -63,7 +73,20 @@ self.downloadManager.dataSource = self;
 - (void)downloadManagerDidStop:(ADBDownloadManager *)manager { ... }
 ```
 
+- start the manager
+
+``` objective-c
+    [self.downloadManager start];
+```
+
+- stop it later if you need to
+
+``` objective-c
+    [self.downloadManager stop];
+```
+
 There you go.
+
 
 # License
 

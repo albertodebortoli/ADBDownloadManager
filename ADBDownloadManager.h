@@ -50,6 +50,15 @@
 /**
  *	Designated initializer.
  *
+ *	@param	localPathFolder	The base local path folder to use for the files to be saved.
+ *
+ *	@return	A ADBDownloadManager instance.
+ */
+- (instancetype)initWithLocalPathFolder:(NSString *)localPathFolder;
+
+/**
+ *	Initializer for providing a base URL for files to download.
+ *
  *	@param	baseRemoteURL	The base remote URL to use for the files to be downloaded.
  *	@param	localPathFolder	The base local path folder to use for the files to be saved.
  *

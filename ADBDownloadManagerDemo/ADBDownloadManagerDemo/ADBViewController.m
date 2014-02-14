@@ -13,10 +13,14 @@ static NSString *const kBaseRemoteURLDemo = @"https://s3.amazonaws.com/albertode
 
 @interface ADBViewController () <ADBDownloadManagerDataSource, ADBDownloadManagerDelegate>
 
-@property (nonatomic, strong) ADBDownloadManager *downloadManager;
-@property (nonatomic, strong) NSArray *fileNames;
-@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *indicatorView;
-@property (nonatomic, weak) IBOutlet UIProgressView *progressView;
+@property (nonatomic, strong) ADBDownloadManager *downloadManagerWithoutBaseURL;
+@property (nonatomic, strong) ADBDownloadManager *downloadManagerWithBaseURL;
+@property (nonatomic, strong) NSArray *fileNamesWithoutBaseURL;
+@property (nonatomic, strong) NSArray *fileNamesWithBaseURL;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *downloadManagerWithoutBaseURLIndicatorView;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *downloadManagerWithBaseURLIndicatorView;
+@property (nonatomic, weak) IBOutlet UIProgressView *downloadManagerWithoutBaseURLProgressView;
+@property (nonatomic, weak) IBOutlet UIProgressView *downloadManagerWithBaseURLProgressView;
 @property (nonatomic, weak) IBOutlet UITextView *logTextView;
 
 - (IBAction)downloadFiles:(id)sender;
@@ -34,25 +38,42 @@ static NSString *const kBaseRemoteURLDemo = @"https://s3.amazonaws.com/albertode
     
     NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
 
-    self.fileNames = @[@"bb01.jpg", @"bb02.jpg", @"bb03.jpg", @"bb04.jpg", @"bb05.jpg"];
-    self.progressView.progress = 0.0f;
+    self.fileNamesWithoutBaseURL = @[@"bb01.jpg", @"bb02.jpg", @"bb03.jpg", @"bb04.jpg", @"bb05.jpg"];
+    self.fileNamesWithBaseURL = @[@"https://s3.amazonaws.com/albertodebortoli.github.com/images/adbdownloadmanager/bb01.jpg",
+                                  @"https://s3.amazonaws.com/albertodebortoli.github.com/images/adbdownloadmanager/bb02.jpg",
+                                  @"https://s3.amazonaws.com/albertodebortoli.github.com/images/adbdownloadmanager/bb03.jpg",
+                                  @"https://s3.amazonaws.com/albertodebortoli.github.com/images/adbdownloadmanager/bb04.jpg",
+                                  @"https://s3.amazonaws.com/albertodebortoli.github.com/images/adbdownloadmanager/bb05.jpg"];
+    
+    self.downloadManagerWithoutBaseURLProgressView.progress = 0.0f;
+    self.downloadManagerWithBaseURLProgressView.progress = 0.0f;
 
-    self.downloadManager = [[ADBDownloadManager alloc] initWithBaseRemoteURL:kBaseRemoteURLDemo
-                                                             localPathFolder:documentsDirectory];
-    self.downloadManager.dataSource = self;
-    self.downloadManager.delegate = self;
+    self.downloadManagerWithoutBaseURL = [[ADBDownloadManager alloc] initWithLocalPathFolder:documentsDirectory];
+    self.downloadManagerWithBaseURL = [[ADBDownloadManager alloc] initWithBaseRemoteURL:kBaseRemoteURLDemo localPathFolder:documentsDirectory];
+
+    self.downloadManagerWithoutBaseURL.dataSource = self;
+    self.downloadManagerWithoutBaseURL.delegate = self;
+    
+    self.downloadManagerWithBaseURL.dataSource = self;
+    self.downloadManagerWithBaseURL.delegate = self;
 }
 
 #pragma mark - ADBDownloadManagerDataSource
 
 - (NSUInteger)numberOfFilesToDownloadForDownloadManager:(ADBDownloadManager *)manager
 {
-    return 5;
+    if (manager == self.downloadManagerWithBaseURL) {
+        return [self.fileNamesWithoutBaseURL count];
+    }
+    return [self.fileNamesWithBaseURL count];
 }
 
 - (NSString *)downloadManager:(ADBDownloadManager *)manager pathForFileToDownloadAtIndex:(NSUInteger)index
 {
-    return [self.fileNames objectAtIndex:index];
+    if (manager == self.downloadManagerWithBaseURL) {
+        return [self.fileNamesWithoutBaseURL objectAtIndex:index];
+    }
+    return [self.fileNamesWithBaseURL objectAtIndex:index];
 }
 
 #pragma mark - ADBDownloadManagerDelegate
@@ -74,7 +95,11 @@ static NSString *const kBaseRemoteURLDemo = @"https://s3.amazonaws.com/albertode
     self.logTextView.text = [self.logTextView.text stringByAppendingString:[NSString stringWithFormat:@"\n\tlocalPath: %@", localPath]];
     self.logTextView.text = [self.logTextView.text stringByAppendingString:[NSString stringWithFormat:@"\n\tbytes: %lu", (unsigned long)bytes]];
     
-    self.progressView.progress = (CGFloat)(index + 1) / (CGFloat)[self.fileNames count];
+    if (manager == self.downloadManagerWithBaseURL) {
+        self.downloadManagerWithBaseURLProgressView.progress = (CGFloat)(index + 1) / (CGFloat)[self.fileNamesWithoutBaseURL count];
+    } else {
+        self.downloadManagerWithoutBaseURLProgressView.progress = (CGFloat)(index + 1) / (CGFloat)[self.fileNamesWithBaseURL count];
+    }
 }
 
 - (void)downloadManager:(ADBDownloadManager *)manager
@@ -111,40 +136,57 @@ static NSString *const kBaseRemoteURLDemo = @"https://s3.amazonaws.com/albertode
 {
     NSLog(@"downloadManagerWillStart:");
     self.logTextView.text = [self.logTextView.text stringByAppendingString:@"\ndownloadManagerWillStart:"];
-    [self.indicatorView startAnimating];
+
+    if (manager == self.downloadManagerWithBaseURL) {
+        [self.downloadManagerWithBaseURLIndicatorView startAnimating];
+    } else {
+        [self.downloadManagerWithoutBaseURLIndicatorView startAnimating];
+    }
 }
 
 - (void)downloadManagerDidStop:(ADBDownloadManager *)manager
 {
     NSLog(@"downloadManagerDidStop:");
     self.logTextView.text = [self.logTextView.text stringByAppendingString:@"\ndownloadManagerDidStop:"];
-    [self.indicatorView stopAnimating];
+    
+    if (manager == self.downloadManagerWithBaseURL) {
+        [self.downloadManagerWithBaseURLIndicatorView stopAnimating];
+    } else {
+        [self.downloadManagerWithoutBaseURLIndicatorView stopAnimating];
+    }
 }
 
 #pragma mark - Actions
 
 - (IBAction)downloadFiles:(id)sender
 {
-    [self.downloadManager start];
+    [self.downloadManagerWithoutBaseURL start];
+    [self.downloadManagerWithBaseURL start];
 }
 
 - (IBAction)stopDownloads:(id)sender
 {
-    [self.downloadManager stop];
+    [self.downloadManagerWithoutBaseURL stop];
+    [self.downloadManagerWithBaseURL stop];
 }
 
 - (IBAction)deleteDownloadedFiles:(id)sender
 {
     NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    for (NSString *file in self.fileNames) {
-        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:file];
+
+    NSMutableArray *filePaths = [NSMutableArray arrayWithArray:self.fileNamesWithBaseURL];
+    for (NSString *file in self.fileNamesWithoutBaseURL) {
+        [filePaths addObject:[documentsDirectory stringByAppendingPathComponent:file]];
+    }
+
+    for (NSString *filePath in filePaths) {
         NSError *error = nil;
         if (![[NSFileManager defaultManager] removeItemAtPath:filePath error:&error]) {
             NSLog(@"Error deleting file: %@", [error localizedDescription]);
             self.logTextView.text = [self.logTextView.text stringByAppendingString:[NSString stringWithFormat:@"\nError deleting file: %@", [error localizedDescription]]];
         } else {
-            NSLog(@"File %@ deleted.", file);
-            self.logTextView.text = [self.logTextView.text stringByAppendingString:[NSString stringWithFormat:@"\nFile %@ deleted.", file]];
+            NSLog(@"File %@ deleted.", filePath);
+            self.logTextView.text = [self.logTextView.text stringByAppendingString:[NSString stringWithFormat:@"\nFile %@ deleted.", filePath]];
         }
     }
 }

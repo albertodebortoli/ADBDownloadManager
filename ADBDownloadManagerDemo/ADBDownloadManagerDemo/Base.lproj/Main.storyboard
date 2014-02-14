@@ -17,14 +17,19 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="qQC-gb-iF4">
-                                <rect key="frame" x="149" y="149" width="37" height="37"/>
+                                <rect key="frame" x="111" y="149" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ye3-mF-pbi">
+                                <rect key="frame" x="187" y="149" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxx-Sc-yax">
-                                <rect key="frame" x="111" y="33" width="113" height="30"/>
+                                <rect key="frame" x="57" y="33" width="220" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Dowload files (5)">
+                                <state key="normal" title="Dowload 10 files w/ 2 managers">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -32,7 +37,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyD-UD-n1j">
-                                <rect key="frame" x="219" y="203" width="94" height="30"/>
+                                <rect key="frame" x="219" y="220" width="94" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Clear console">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -62,7 +67,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y2K-uG-A0A">
-                                <rect key="frame" x="0.0" y="234" width="320" height="314"/>
+                                <rect key="frame" x="0.0" y="252" width="320" height="296"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -72,14 +77,18 @@
                                 <rect key="frame" x="85" y="194" width="165" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mnU-Ik-y0Q">
+                                <rect key="frame" x="85" y="204" width="165" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Y2K-uG-A0A" firstAttribute="top" secondItem="qQC-gb-iF4" secondAttribute="bottom" constant="48" id="2V4-6c-kWL"/>
+                            <constraint firstItem="Y2K-uG-A0A" firstAttribute="top" secondItem="qQC-gb-iF4" secondAttribute="bottom" constant="66" id="2V4-6c-kWL"/>
                             <constraint firstItem="dQF-uH-nfU" firstAttribute="top" secondItem="18v-QK-neK" secondAttribute="bottom" constant="8" id="5Lr-6p-rJH"/>
-                            <constraint firstItem="qQC-gb-iF4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="149" id="7mV-BE-fJU"/>
+                            <constraint firstItem="qQC-gb-iF4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="111" id="7mV-BE-fJU"/>
                             <constraint firstAttribute="trailing" secondItem="dQF-uH-nfU" secondAttribute="trailing" constant="70" id="H0r-dk-olg"/>
-                            <constraint firstItem="Y2K-uG-A0A" firstAttribute="top" secondItem="Lib-F4-WLo" secondAttribute="bottom" constant="38" id="HLW-8S-CpL"/>
+                            <constraint firstItem="Y2K-uG-A0A" firstAttribute="top" secondItem="Lib-F4-WLo" secondAttribute="bottom" constant="56" id="HLW-8S-CpL"/>
                             <constraint firstItem="qQC-gb-iF4" firstAttribute="top" secondItem="dQF-uH-nfU" secondAttribute="bottom" constant="10" id="KBn-ej-Wgy"/>
                             <constraint firstAttribute="trailing" secondItem="Y2K-uG-A0A" secondAttribute="trailing" id="Qrv-0X-CwR"/>
                             <constraint firstItem="cxx-Sc-yax" firstAttribute="top" secondItem="bJ1-jf-t69" secondAttribute="bottom" constant="13" id="VFy-1f-9qG"/>
@@ -88,13 +97,13 @@
                             <constraint firstAttribute="trailing" secondItem="Lib-F4-WLo" secondAttribute="trailing" constant="70" id="cj9-y9-PZG"/>
                             <constraint firstItem="18v-QK-neK" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="85" id="gfw-lM-rl7"/>
                             <constraint firstItem="uV2-5i-iya" firstAttribute="top" secondItem="Y2K-uG-A0A" secondAttribute="bottom" constant="20" id="hJd-jj-pty"/>
-                            <constraint firstItem="cxx-Sc-yax" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="111" id="hgy-fu-nP9"/>
+                            <constraint firstItem="cxx-Sc-yax" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="57" id="hgy-fu-nP9"/>
                             <constraint firstItem="18v-QK-neK" firstAttribute="top" secondItem="cxx-Sc-yax" secondAttribute="bottom" constant="8" id="kIE-F1-POk"/>
-                            <constraint firstAttribute="trailing" secondItem="qQC-gb-iF4" secondAttribute="trailing" constant="134" id="n1f-8y-lJA"/>
+                            <constraint firstAttribute="trailing" secondItem="qQC-gb-iF4" secondAttribute="trailing" constant="172" id="n1f-8y-lJA"/>
                             <constraint firstItem="Lib-F4-WLo" firstAttribute="top" secondItem="qQC-gb-iF4" secondAttribute="bottom" constant="8" id="nXY-LF-CQO"/>
                             <constraint firstItem="Y2K-uG-A0A" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="ocI-IT-GP7"/>
-                            <constraint firstAttribute="trailing" secondItem="cxx-Sc-yax" secondAttribute="trailing" constant="96" id="opj-cM-Geh"/>
-                            <constraint firstItem="TyD-UD-n1j" firstAttribute="top" secondItem="dQF-uH-nfU" secondAttribute="bottom" constant="64" id="q1g-zc-6cx"/>
+                            <constraint firstAttribute="trailing" secondItem="cxx-Sc-yax" secondAttribute="trailing" constant="43" id="opj-cM-Geh"/>
+                            <constraint firstItem="TyD-UD-n1j" firstAttribute="top" secondItem="dQF-uH-nfU" secondAttribute="bottom" constant="81" id="q1g-zc-6cx"/>
                             <constraint firstItem="Lib-F4-WLo" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="85" id="qGG-8X-hns"/>
                             <constraint firstAttribute="trailing" secondItem="18v-QK-neK" secondAttribute="trailing" constant="70" id="uTA-cM-cdE"/>
                             <constraint firstItem="qQC-gb-iF4" firstAttribute="top" secondItem="dQF-uH-nfU" secondAttribute="bottom" constant="10" id="v4T-pY-rbY"/>
@@ -103,9 +112,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="indicatorView" destination="qQC-gb-iF4" id="Vc4-MC-HMh"/>
+                        <outlet property="downloadManagerWithBaseURLIndicatorView" destination="Ye3-mF-pbi" id="xaD-0s-lk2"/>
+                        <outlet property="downloadManagerWithBaseURLProgressView" destination="mnU-Ik-y0Q" id="acM-BI-Hch"/>
+                        <outlet property="downloadManagerWithoutBaseURLIndicatorView" destination="qQC-gb-iF4" id="ajY-Sf-8rc"/>
+                        <outlet property="downloadManagerWithoutBaseURLProgressView" destination="Lib-F4-WLo" id="QPl-u9-PPW"/>
                         <outlet property="logTextView" destination="Y2K-uG-A0A" id="veL-bY-dCa"/>
-                        <outlet property="progressView" destination="Lib-F4-WLo" id="32n-hb-Uza"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

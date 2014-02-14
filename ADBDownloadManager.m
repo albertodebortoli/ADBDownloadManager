@@ -28,9 +28,8 @@
     dispatch_queue_t _callbackQueue;
 }
 
-- (instancetype)initWithBaseRemoteURL:(NSString *)baseRemoteURL localPathFolder:(NSString *)localPathFolder
+- (instancetype)initWithLocalPathFolder:(NSString *)localPathFolder
 {
-    NSAssert(baseRemoteURL != nil, @"baseRemoteURL must not be nil");
     NSAssert(localPathFolder != nil, @"localPathFolder must not be nil");
     
     self = [super init];
@@ -42,9 +41,21 @@
         _bytesDownloadedAndSaved = 0;
         _stopAfterCurrentRequest = NO;
         _isRunning = NO;
-        _baseRemoteURL = baseRemoteURL;
         _localPathFolder = localPathFolder;
+        _baseRemoteURL = @"";
         _callbackQueue = dispatch_get_main_queue();
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithBaseRemoteURL:(NSString *)baseRemoteURL localPathFolder:(NSString *)localPathFolder
+{
+    NSAssert(baseRemoteURL != nil, @"baseRemoteURL must not be nil");
+    
+    self = [self initWithLocalPathFolder:localPathFolder];
+    if (self) {
+        _baseRemoteURL = baseRemoteURL;
     }
     
     return self;
@@ -108,7 +119,7 @@
     __block NSString *pathForFileToDownload = nil;
     pathForFileToDownload = [self.dataSource downloadManager:self pathForFileToDownloadAtIndex:index];
     
-    if ([pathForFileToDownload hasPrefix:@"http"] || [pathForFileToDownload hasPrefix:@"ftp"]) {
+    if ([self.baseRemoteURL length] != 0 && ([pathForFileToDownload hasPrefix:@"http"] || [pathForFileToDownload hasPrefix:@"ftp"])) {
         pathForFileToDownload = [pathForFileToDownload stringByReplacingOccurrencesOfString:[pathForFileToDownload pathComponents][0] withString:@""];
     }
     
