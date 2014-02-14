@@ -96,11 +96,6 @@
     self.stopAfterCurrentRequest = YES;
 }
 
-- (NSUInteger)numberOfDownloadsInSession
-{
-    return self.numberOfFilesToDownload;
-}
-
 #pragma mark - Private Methods
 
 - (void)_stop

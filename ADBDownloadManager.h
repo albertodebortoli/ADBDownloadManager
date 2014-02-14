@@ -89,9 +89,4 @@
  */
 @property (nonatomic, assign) BOOL createFoldersHierarchy;
 
-/**
- *	The number of downloads in the current session.
- */
-@property (nonatomic, readonly) NSUInteger numberOfDownloadsInSession;
-
 @end
