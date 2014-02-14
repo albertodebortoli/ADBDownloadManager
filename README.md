@@ -6,7 +6,7 @@ Goals:
 
 * download of a sequence of files
 * ease of download of a sequence of files with the same base URL address
-* create locally the folders hierarchy mapping the remote path (splitting the URL)
+* create locally the folders hierarchy mapping the remote path (splitting the URL) or save all files in the same directory
 * in case of files the with same base URL address, its components are not used in the folders creation
 * downloads happen in background and in a serial fashion
 * ability of canceling downloads that are not started yet
@@ -29,6 +29,13 @@ self.downloadManager = [[ADBDownloadManager alloc] initWithLocalPathFolder:docum
 // or with base URL
 self.downloadManager = [[ADBDownloadManager alloc] initWithBaseRemoteURL:@"http://www.myservice.com/"
                                                          localPathFolder:documentsDirectory];
+```
+
+- optionally set behaviours
+
+``` objective-c
+self.downloadManager.forceDownoad = YES; // overwrites files, default is NO
+self.downloadManager.createFoldersHierarchy = NO; // avoid the creation of the folders hierarchy, default is YES
 ```
 
 - set the `delegate` and the `dataSource`
