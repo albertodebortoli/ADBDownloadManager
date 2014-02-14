@@ -38,18 +38,25 @@ static NSString *const kBaseRemoteURLDemo = @"https://s3.amazonaws.com/albertode
     
     NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
 
-    self.fileNamesWithoutBaseURL = @[@"bb01.jpg", @"bb02.jpg", @"bb03.jpg", @"bb04.jpg", @"bb05.jpg"];
+    self.fileNamesWithoutBaseURL = @[@"bb01.jpg",
+                                     @"bb02.jpg",
+                                     @"bb03.jpg",
+                                     @"bb04.jpg",
+                                     @"bb05.jpg"
+                                     ];
     self.fileNamesWithBaseURL = @[@"https://s3.amazonaws.com/albertodebortoli.github.com/images/adbdownloadmanager/bb01.jpg",
                                   @"https://s3.amazonaws.com/albertodebortoli.github.com/images/adbdownloadmanager/bb02.jpg",
                                   @"https://s3.amazonaws.com/albertodebortoli.github.com/images/adbdownloadmanager/bb03.jpg",
                                   @"https://s3.amazonaws.com/albertodebortoli.github.com/images/adbdownloadmanager/bb04.jpg",
-                                  @"https://s3.amazonaws.com/albertodebortoli.github.com/images/adbdownloadmanager/bb05.jpg"];
+                                  @"https://s3.amazonaws.com/albertodebortoli.github.com/images/adbdownloadmanager/bb05.jpg"
+                                  ];
     
     self.downloadManagerWithoutBaseURLProgressView.progress = 0.0f;
     self.downloadManagerWithBaseURLProgressView.progress = 0.0f;
 
     self.downloadManagerWithoutBaseURL = [[ADBDownloadManager alloc] initWithLocalPathFolder:documentsDirectory];
     self.downloadManagerWithBaseURL = [[ADBDownloadManager alloc] initWithBaseRemoteURL:kBaseRemoteURLDemo localPathFolder:documentsDirectory];
+//    self.downloadManagerWithoutBaseURL.createFoldersHierarchy = NO;
 
     self.downloadManagerWithoutBaseURL.dataSource = self;
     self.downloadManagerWithoutBaseURL.delegate = self;
@@ -94,6 +101,7 @@ static NSString *const kBaseRemoteURLDemo = @"https://s3.amazonaws.com/albertode
     self.logTextView.text = [self.logTextView.text stringByAppendingString:[NSString stringWithFormat:@"\n\tremoteURL: %@", remoteURL]];
     self.logTextView.text = [self.logTextView.text stringByAppendingString:[NSString stringWithFormat:@"\n\tlocalPath: %@", localPath]];
     self.logTextView.text = [self.logTextView.text stringByAppendingString:[NSString stringWithFormat:@"\n\tbytes: %lu", (unsigned long)bytes]];
+    [self scrollToBottom];
     
     if (manager == self.downloadManagerWithBaseURL) {
         self.downloadManagerWithBaseURLProgressView.progress = (CGFloat)(index + 1) / (CGFloat)[self.fileNamesWithoutBaseURL count];
@@ -118,6 +126,7 @@ static NSString *const kBaseRemoteURLDemo = @"https://s3.amazonaws.com/albertode
     self.logTextView.text = [self.logTextView.text stringByAppendingString:[NSString stringWithFormat:@"\n\tremoteURL: %@", remoteURL]];
     self.logTextView.text = [self.logTextView.text stringByAppendingString:[NSString stringWithFormat:@"\n\tlocalPath: %@", localPath]];
     self.logTextView.text = [self.logTextView.text stringByAppendingString:[NSString stringWithFormat:@"\n\terror: %@", error]];
+    [self scrollToBottom];
 }
 
 - (void)downloadManagerDidCompleteAllDownloads:(ADBDownloadManager *)manager
@@ -130,12 +139,14 @@ static NSString *const kBaseRemoteURLDemo = @"https://s3.amazonaws.com/albertode
     self.logTextView.text = [self.logTextView.text stringByAppendingString:@"\ndownloadManagerDidCompleteAllDownloads:failedURLs:totalBytes:"];
     self.logTextView.text = [self.logTextView.text stringByAppendingString:[NSString stringWithFormat:@"\n\tfailedURLs: %@", failedURLs]];
     self.logTextView.text = [self.logTextView.text stringByAppendingString:[NSString stringWithFormat:@"\n\ttotalBytes: %lu", (unsigned long)totalBytes]];
+    [self scrollToBottom];
 }
 
 - (void)downloadManagerWillStart:(ADBDownloadManager *)manager
 {
     NSLog(@"downloadManagerWillStart:");
     self.logTextView.text = [self.logTextView.text stringByAppendingString:@"\ndownloadManagerWillStart:"];
+    [self scrollToBottom];
 
     if (manager == self.downloadManagerWithBaseURL) {
         [self.downloadManagerWithBaseURLIndicatorView startAnimating];
@@ -148,6 +159,7 @@ static NSString *const kBaseRemoteURLDemo = @"https://s3.amazonaws.com/albertode
 {
     NSLog(@"downloadManagerDidStop:");
     self.logTextView.text = [self.logTextView.text stringByAppendingString:@"\ndownloadManagerDidStop:"];
+    [self scrollToBottom];
     
     if (manager == self.downloadManagerWithBaseURL) {
         [self.downloadManagerWithBaseURLIndicatorView stopAnimating];
@@ -173,10 +185,12 @@ static NSString *const kBaseRemoteURLDemo = @"https://s3.amazonaws.com/albertode
 - (IBAction)deleteDownloadedFiles:(id)sender
 {
     NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSError * error;
+    NSArray * directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:&error];
 
-    NSMutableArray *filePaths = [NSMutableArray arrayWithArray:self.fileNamesWithBaseURL];
-    for (NSString *file in self.fileNamesWithoutBaseURL) {
-        [filePaths addObject:[documentsDirectory stringByAppendingPathComponent:file]];
+    NSMutableArray *filePaths = [NSMutableArray array];
+    for (NSString *fileName in directoryContent) {
+        [filePaths addObject:[documentsDirectory stringByAppendingPathComponent:fileName]];
     }
 
     for (NSString *filePath in filePaths) {
@@ -184,9 +198,11 @@ static NSString *const kBaseRemoteURLDemo = @"https://s3.amazonaws.com/albertode
         if (![[NSFileManager defaultManager] removeItemAtPath:filePath error:&error]) {
             NSLog(@"Error deleting file: %@", [error localizedDescription]);
             self.logTextView.text = [self.logTextView.text stringByAppendingString:[NSString stringWithFormat:@"\nError deleting file: %@", [error localizedDescription]]];
+            [self scrollToBottom];
         } else {
             NSLog(@"File %@ deleted.", filePath);
             self.logTextView.text = [self.logTextView.text stringByAppendingString:[NSString stringWithFormat:@"\nFile %@ deleted.", filePath]];
+            [self scrollToBottom];
         }
     }
 }
@@ -194,6 +210,16 @@ static NSString *const kBaseRemoteURLDemo = @"https://s3.amazonaws.com/albertode
 - (IBAction)clearConsole:(id)sender
 {
     self.logTextView.text = @"";
+    [self scrollToBottom];
+}
+
+#pragma mark - Private
+
+- (void)scrollToBottom
+{
+    [self.logTextView scrollRangeToVisible:NSMakeRange([self.logTextView.text length], 0)];
+    [self.logTextView setScrollEnabled:NO];
+    [self.logTextView setScrollEnabled:YES];
 }
 
 @end

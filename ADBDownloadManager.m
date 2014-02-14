@@ -1,6 +1,6 @@
 //
 //  ADBDownloadManager.m
-//  v1.2.0
+//  v1.3.0
 //
 //  Created by Alberto De Bortoli on 27/08/2013.
 //
@@ -28,19 +28,25 @@
     dispatch_queue_t _callbackQueue;
 }
 
+- (instancetype)init
+{
+    NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    return [self initWithLocalPathFolder:documentsDirectory];
+}
+
 - (instancetype)initWithLocalPathFolder:(NSString *)localPathFolder
 {
     NSAssert(localPathFolder != nil, @"localPathFolder must not be nil");
     
     self = [super init];
     if (self) {
-        _forceDownload = NO;
         _failedURLs = [NSMutableArray array];
         _forceDownload = NO;
+        _isRunning = NO;
+        _stopAfterCurrentRequest = NO;
+        _createFoldersHierarchy = YES;
         _numberOfFilesToDownload = 0;
         _bytesDownloadedAndSaved = 0;
-        _stopAfterCurrentRequest = NO;
-        _isRunning = NO;
         _localPathFolder = localPathFolder;
         _baseRemoteURL = @"";
         _callbackQueue = dispatch_get_main_queue();
@@ -123,8 +129,10 @@
         pathForFileToDownload = [pathForFileToDownload stringByReplacingOccurrencesOfString:[pathForFileToDownload pathComponents][0] withString:@""];
     }
     
-    NSString *localPath = [self.localPathFolder stringByAppendingPathComponent:pathForFileToDownload];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:localPath] && (_forceDownload == NO)) {
+    NSString *localPathForFileToDownload = self.createFoldersHierarchy ? pathForFileToDownload : [[pathForFileToDownload pathComponents] lastObject];
+    
+    NSString *localPath = [self.localPathFolder stringByAppendingPathComponent:localPathForFileToDownload];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:localPath] && (self.forceDownload == NO)) {
         // process next
         if (index + 1 < self.numberOfFilesToDownload) {
             [self _executeItemAtIndex:index + 1];

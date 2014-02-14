@@ -1,6 +1,6 @@
 //
 //  ADBDownloadManager.h
-//  v1.2.0
+//  v1.3.0
 //
 //  Created by Alberto De Bortoli on 27/08/2013.
 //
@@ -83,6 +83,11 @@
  *	If YES, the files are downloaded overwriting existing files on disk. If NO and files exist on disk, no download is performed and local copy is kept. The default value is NO.
  */
 @property (nonatomic, assign) BOOL forceDownload;
+
+/**
+ *	If YES, the folders hierarchy mapping the remote URL path is created locally, otherwise all the files are saved in the root of the local path folder. The default value is YES.
+ */
+@property (nonatomic, assign) BOOL createFoldersHierarchy;
 
 /**
  *	The number of downloads in the current session.
