@@ -187,12 +187,13 @@
                                    }
                                    else {
                                        self.bytesDownloadedAndSaved += data.length;
-                                       if ([self.delegate respondsToSelector:@selector(downloadManager:didDownloadFileAtIndex:fromRemoteURL:toLocalPath:bytes:)]) {
+                                       if ([self.delegate respondsToSelector:@selector(downloadManager:didDownloadFileAtIndex:fromRemoteURL:toLocalPath:data:bytes:)]) {
                                            dispatch_async(_callbackQueue, ^{
                                                [self.delegate downloadManager:self
                                                        didDownloadFileAtIndex:index
                                                                 fromRemoteURL:[request.URL absoluteString]
                                                                   toLocalPath:localPath
+                                                                         data:data
                                                                         bytes:data.length];
                                            });
                                        }

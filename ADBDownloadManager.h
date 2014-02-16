@@ -27,6 +27,7 @@
  didDownloadFileAtIndex:(NSUInteger)index
           fromRemoteURL:(NSString *)remoteURL
             toLocalPath:(NSString *)localPath
+                   data:(NSData *)data
                   bytes:(NSUInteger)bytes;
 
 - (void)downloadManager:(ADBDownloadManager *)manager

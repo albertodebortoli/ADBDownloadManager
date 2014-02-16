@@ -89,6 +89,7 @@ static NSString *const kBaseRemoteURLDemo = @"https://s3.amazonaws.com/albertode
  didDownloadFileAtIndex:(NSUInteger)index
           fromRemoteURL:(NSString *)remoteURL
             toLocalPath:(NSString *)localPath
+                   data:(NSData *)data
                   bytes:(NSUInteger)bytes
 {
     NSLog(@"downloadManager:didDownloadFileAtIndex:fromRemoteURL:toLocalPath:bytes:");
