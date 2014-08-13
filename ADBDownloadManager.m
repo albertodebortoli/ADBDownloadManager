@@ -144,8 +144,8 @@
     }
     
     NSString *urlForFileToDownload = [self.baseRemoteURL stringByAppendingPathComponent:pathForFileToDownload];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlForFileToDownload]];
+    NSURL  *url=[NSURL URLWithString:[urlForFileToDownload stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
