@@ -44,11 +44,11 @@ static NSString *const kBaseRemoteURLDemo = @"https://s3.amazonaws.com/albertode
                                      @"bb04.jpg",
                                      @"bb05.jpg"
                                      ];
-    self.fileNamesWithBaseURL = @[@"https://s3.amazonaws.com/albertodebortoli.github.com/images/adbdownloadmanager/bb01.jpg",
-                                  @"https://s3.amazonaws.com/albertodebortoli.github.com/images/adbdownloadmanager/bb02.jpg",
-                                  @"https://s3.amazonaws.com/albertodebortoli.github.com/images/adbdownloadmanager/bb03.jpg",
-                                  @"https://s3.amazonaws.com/albertodebortoli.github.com/images/adbdownloadmanager/bb04.jpg",
-                                  @"https://s3.amazonaws.com/albertodebortoli.github.com/images/adbdownloadmanager/bb05.jpg"
+    self.fileNamesWithBaseURL = @[@"https://github.com/albertodebortoli/ADBDownloadManager/tree/master/ADBDownloadManagerDemo/images/bb01.jpg",
+                                  @"https://github.com/albertodebortoli/ADBDownloadManager/tree/master/ADBDownloadManagerDemo/images/bb02.jpg",
+                                  @"https://github.com/albertodebortoli/ADBDownloadManager/tree/master/ADBDownloadManagerDemo/images/bb03.jpg",
+                                  @"https://github.com/albertodebortoli/ADBDownloadManager/tree/master/ADBDownloadManagerDemo/images/bb04.jpg",
+                                  @"https://github.com/albertodebortoli/ADBDownloadManager/tree/master/ADBDownloadManagerDemo/images/bb05.jpg"
                                   ];
     
     self.downloadManagerWithoutBaseURLProgressView.progress = 0.0f;
